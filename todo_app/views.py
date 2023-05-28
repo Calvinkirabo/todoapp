@@ -54,7 +54,7 @@ def task_list(request):
     details = user.username
     return render(request, 'task_list.html', {'tasks': tasks, 'credentails': details})
 
-@login_required
+
 def register_request(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
@@ -68,7 +68,7 @@ def register_request(request):
     form = NewUserForm()
     return render(request=request, template_name="register.html", context={"register_form": form})
 
-@login_required
+
 def logout_request(request):
     logout(request)
     messages.info(request, "You have successfully logged out.")
