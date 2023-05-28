@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo App</title>
+</head>
+<body>
+    <h1>Todo App</h1>
+    <h2>hello userx</h2>
+    <div id="calendar"></div>
+    <form>
+        <input type="text" name="task" placeholder="Enter task">
+        <input type="datetime-local" name="alarm">
+        <button type="submit">Add task</button>
+    </form>
+</body>
+</html>
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #333;
+}
+
+#calendar {
+    border: 1px solid #ccc;
+    height: 300px;
+}
+
+form {
+    margin-top: 20px;
+}
+
+input[type="text"], input[type="datetime-local"] {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+button[type="submit"]:hover {
+    cursor: pointer;
+    background-color: #555;
+}

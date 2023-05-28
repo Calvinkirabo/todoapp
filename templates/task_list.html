@@ -1,0 +1,18 @@
+{% extends 'base.html'%} {% block content%}
+<br>
+{% for task in tasks %}
+{% if credentails == task.user.username %}
+        <div class="item-row">
+            <div class="row">
+                <div class="col"> {{ task }}</div>
+                <div class="col">
+                    <a class="btn btn-sm btn-info" href="{% url 'update_list' task.id %}">Update</a>
+                    <a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}">Delete</a>
+                </div>
+            </div>
+        </div>
+{% endif %}
+{% endfor %}
+
+    
+{% endblock%}

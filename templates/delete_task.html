@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Item</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    {% block content %}
+    <p>Are you sure you want to delete "{{ item }}"?</p>
+
+    <a href="{% url 'home' %}">Cancel</a>
+
+    <form method="POST" name="">
+
+        {% csrf_token %}
+        <input type="submit" name"confirm">
+        
+    </form>
+    {% endblock %}
+</body>
+</html>

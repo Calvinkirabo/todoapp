@@ -1,0 +1,29 @@
+{% extends 'base.html'%} {% block content%}
+<br><br><br>
+<div class="container">
+      <div class="card align-content-sm-center">
+        <div class="card-body">
+          <h1 class="card-title">hello,whats on ur schedule today?</h1>
+          <form method="POST" action="{% url 'add_task' %}" >{% csrf_token %}
+
+            <div class="mb-3">
+              <input type="text" class="form-control" name ="title"placeholder="Enter task" aria-describedby="basic-addon1" required>
+            </div>
+            <div class="mb-3">
+              <input type="datetime-local" class="form-control" name="due_date" required>
+            </div>
+              <div  name="description" id="" cols="30" rows="10">   
+                <div style="font-size: 18px; font-weight: bold; color: #333;">
+                  Hey {{user.username}}, you can add short descriptions about your activities
+              </div>
+              <textarea  name="description" class="form-control" id="" cols="50" rows="10"> </textarea>
+              <br><br>
+              <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-success">Add task!</button>
+              </div>
+              <br><br>
+          </form>
+        </div>
+      </div>
+</div>
+{% endblock%}
