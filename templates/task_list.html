@@ -4,7 +4,7 @@
 {% if credentails == task.user.username %}
         <div class="item-row">
             <div class="row">
-                <div class="col"> {{ task }}</div>
+                <div class="col"> {{ task }} <br> {{ task.due_date }}</div>
                 <div class="col">
                     <a class="btn btn-sm btn-info" href="{% url 'update_list' task.id %}">Update</a>
                     <a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}">Delete</a>
