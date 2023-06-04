@@ -1,10 +1,19 @@
+import datetime
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from django.conf import settings
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.contrib.auth import login, authenticate, logout
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+
+from . import models
 from .forms import NewUserForm
+from django.contrib.sites.shortcuts import get_current_site
 from django.contrib import messages
+from django.core.mail import send_mail, EmailMessage
 from .models import *
 from .forms import *
 
@@ -12,7 +21,7 @@ from .forms import *
 
 @login_required
 def home(request):
-
+    sendemail()
     form = TaskForm()
 
     return render(request, 'index.html', {'form': form})
@@ -99,3 +108,22 @@ def deleteTask(request, pk):
 
     context = {'item': item}
     return render(request, 'delete_task.html', context)
+
+def sendemail(request):
+    emails = []
+    for n in Schedule.objects.all():
+       if n.due_date.replace(tzinfo=None) >= datetime.datetime.now():
+             for k in User.objects.all():
+                 emails.append(k.email)
+                 email_subject = 'Task Reminder'
+                 message2 = render_to_string("email.html", {
+                            'name': k.username,
+                        })
+                 email = EmailMessage(
+                    email_subject,
+                    message2,
+                    settings.EMAIL_HOST_USER,
+                    emails,
+                )
+                 email.fail_silently = False
+                 email.send()
